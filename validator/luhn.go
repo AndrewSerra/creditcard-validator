@@ -15,7 +15,7 @@ func Validate(card string) (bool, error) {
 	card, err := checkCardNumber(card)
 
 	if err != nil {
-		log.Fatalln(err)
+		log.Println(err)
 		return false, err
 	}
 
@@ -29,7 +29,7 @@ func Validate(card string) (bool, error) {
 	calculatedCheckDigit, err := calculateCheckDigit(card)
 
 	if err != nil {
-		log.Fatalln(err)
+		log.Println(err)
 		return false, err
 	}
 
@@ -41,7 +41,7 @@ func checkCardNumber(card string) (string, error) {
 	ok, err := regexp.Match(pattern, []byte(card))
 
 	if err != nil {
-		log.Fatalln(err)
+		log.Println(err)
 		return "", errors.New("unknown error")
 	}
 
@@ -58,7 +58,7 @@ func calculateCheckDigit(card string) (int, error) {
 		digit, err := strconv.Atoi(card[i : i+1])
 		// Not expected error, but just in case
 		if err != nil {
-			log.Fatalln(err)
+			log.Println(err)
 			return 0, err
 		}
 
